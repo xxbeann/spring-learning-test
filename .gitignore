@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+AGENTS.md
+.DS_Store
+.gradle-local
