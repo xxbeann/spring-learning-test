@@ -60,5 +60,6 @@ public class UpdatingDaoTest {
         Long id = updatingDAO.insertWithKeyHolder(customer);
 
         assertThat(id).isNotNull();
+        assertThat(id).isEqualTo(5L);
     }
 }

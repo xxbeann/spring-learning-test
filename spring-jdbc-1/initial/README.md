@@ -238,6 +238,36 @@ Long id = keyHolder.getKey().longValue();
 
 ### 학습 테스트
 - 테스트 메서드: `cholog.UpdatingDaoTest.keyHolder`
+
+<br>
+
+# 6. 추가 학습: Reservation 3단계 감각 익히기
+
+<br>
+
+실제 `roomescape` 미션을 진행하다 보면, 요청은 `timeId`만 보내는데 응답은 `time: { id, startAt }` 전체를 내려줘야 하는 지점에서 많이 막힙니다.
+
+이 추가 예제는 그 흐름을 작은 JDBC 학습 테스트로 따로 떼어낸 것입니다.
+
+- `ReservationReq`
+  - 요청 전용 DTO
+  - `date`, `name`, `timeId`
+- `Reservation`
+  - 응답/도메인 모델
+  - `id`, `name`, `date`, `ReservationTime time`
+- `ReservationTime`
+  - 연관 객체
+  - `id`, `startAt`
+
+<br>
+
+### 학습 테스트
+- 테스트 메서드: `cholog.roomescape.ReservationFlowTest.findReservationTimeById`
+  - `ReservationTimeDao.findById`를 구현해 `startAt`까지 채워보세요.
+- 테스트 메서드: `cholog.roomescape.ReservationFlowTest.createReservationShouldReturnFullTimeInformation`
+  - `ReservationService.create`에서 저장 후 `ReservationTime`을 다시 조회해 응답을 완성해보세요.
+- 테스트 메서드: `cholog.roomescape.ReservationFlowTest.findAllReservationsShouldIncludeStartAt`
+  - `ReservationDao.findAllReservations`에서 `reservation_time`과 join하여 `startAt`이 포함된 응답을 만들어보세요.
 - 수행 방법
   - `cholog.UpdatingDAO.insertWithKeyHolder` 을 이용하여 학습 테스트를 성공시키세요.
 
